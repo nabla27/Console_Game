@@ -14,7 +14,7 @@ int count_WH = 0;
 int true_false = 0;
 
 int wait_time = 40;
-bool w_b = true;            //true:”’//false:•
+bool w_b = true;            //true:ç™½//false:é»’
 
 clock_t start;
 clock_t limit;
@@ -29,13 +29,13 @@ enum class MODE{MENU, GAME, JUDG, PAUSE, RESET_M, RESET_G, OPTION};
 enum class GAME_MODE{PARE, SINGLE};
 
 state OR[14][14];
-state tmp[14][14];											//‹î‚Ìó‘Ô‹L‰¯
-bool t_f[14][14];											//‹î‚Ì‘¶İ//true‚ ‚è//false‚È‚µ
-bool turn, paused;											//ƒ^[ƒ“//true:©•ª//false:‘Šè
+state tmp[14][14];											//é§’ã®çŠ¶æ…‹è¨˜æ†¶
+bool t_f[14][14];											//é§’ã®å­˜åœ¨//trueã‚ã‚Š//falseãªã—
+bool turn, paused;											//ã‚¿ãƒ¼ãƒ³//true:è‡ªåˆ†//false:ç›¸æ‰‹
 MODE mode;
 GAME_MODE game_mode;
 
-void judg_wall() {											//•Ç‚Ì“–‚½‚è”»’è
+void judg_wall() {											//å£ã®å½“ãŸã‚Šåˆ¤å®š
 	if (cursorX == 0) {
 		cursorX = 1;
 	}
@@ -50,7 +50,7 @@ void judg_wall() {											//•Ç‚Ì“–‚½‚è”»’è
 	}
 }									
 
-bool CHECK_WHITE(int check_x, int check_y) {						//‹î‚ª’u‚¯‚éˆÊ’u‚©Šm”F
+bool CHECK_WHITE(int check_x, int check_y) {						//é§’ãŒç½®ã‘ã‚‹ä½ç½®ã‹ç¢ºèª
 	int count = 0;
 	if (t_f[check_x][check_y] == false) {					
 		if (OR[check_x - 1][check_y] == BLACK) {
@@ -145,7 +145,7 @@ bool CHECK_WHITE(int check_x, int check_y) {						//‹î‚ª’u‚¯‚éˆÊ’u‚©Šm”F
 	}
 }
 
-bool CHECK_BLACK(int check_x, int check_y) {						//‹î‚ª’u‚¯‚éˆÊ’u‚©Šm”F
+bool CHECK_BLACK(int check_x, int check_y) {						//é§’ãŒç½®ã‘ã‚‹ä½ç½®ã‹ç¢ºèª
 	int count = 0;
 	if (t_f[check_x][check_y] == false) {
 		if (OR[check_x - 1][check_y] == WHITE) {
@@ -441,37 +441,37 @@ void REVERSE(int m, int n) {
 	}
 }
 
-void subfield() {											//ƒTƒuƒtƒB[ƒ‹ƒh‚Ìo—Í
+void subfield() {											//ã‚µãƒ–ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®å‡ºåŠ›
 	if (turn == true) {
 		if (w_b == true) {
-			printf("[©•ª‚Ìƒ^[ƒ“‚Å‚·]œ\n");
+			printf("[è‡ªåˆ†ã®ã‚¿ãƒ¼ãƒ³ã§ã™]â—\n");
 		}
 		else
-			printf("[©•ª‚Ìƒ^[ƒ“‚Å‚·]Z\n");
+			printf("[è‡ªåˆ†ã®ã‚¿ãƒ¼ãƒ³ã§ã™]ã€‡\n");
 	}
 	else if (turn == false) {
 		if (w_b == true) {
-			printf("[‘Šè‚Ìƒ^[ƒ“‚Å‚·]Z\n");
+			printf("[ç›¸æ‰‹ã®ã‚¿ãƒ¼ãƒ³ã§ã™]ã€‡\n");
 		}
 		else
-			printf("[‘Šè‚Ìƒ^[ƒ“‚Å‚·]œ\n");
+			printf("[ç›¸æ‰‹ã®ã‚¿ãƒ¼ãƒ³ã§ã™]â—\n");
 	}
 	printf("\n");
 	printf(alert);
 	printf("\n");
-	printf("”’‹î‚Ì”:"); printf("  %d\n", count_WH);
-	printf("•‹î‚Ì”:"); printf("  %d\n", count_BK);
-	printf("‡Œv‹î”:"); printf("  %d\n", true_false - (FIELD_HEIGHT+FIELD_WIDTH)*2 + 4);
+	printf("ç™½é§’ã®æ•°:"); printf("  %d\n", count_WH);
+	printf("é»’é§’ã®æ•°:"); printf("  %d\n", count_BK);
+	printf("åˆè¨ˆé§’æ•°:"); printf("  %d\n", true_false - (FIELD_HEIGHT+FIELD_WIDTH)*2 + 4);
 	printf("\n");
-	printf("PPPPPPPPPPP\n");
-	printf("w,a,s,d: ƒJ[ƒ\ƒ‹ˆÚ“®\n");
-	printf("p      : ‹î‚ğ”z’u‚·‚é\n");
-	printf("k      : ƒXƒLƒbƒv‚·‚é\n");
-	printf("m      : ’†’fƒƒjƒ…[\n");
+	printf("ï¿£ï¿£ï¿£ï¿£ï¿£ï¿£ï¿£ï¿£ï¿£ï¿£ï¿£\n");
+	printf("w,a,s,d: ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•\n");
+	printf("p      : é§’ã‚’é…ç½®ã™ã‚‹\n");
+	printf("k      : ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹\n");
+	printf("m      : ä¸­æ–­ãƒ¡ãƒ‹ãƒ¥ãƒ¼\n");
 	printf("______________________\n");
 }
 
-void COUNT(int m, int n) {									//‹î‚Ì”‚ğƒJƒEƒ“ƒg
+void COUNT(int m, int n) {									//é§’ã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 	if (OR[m][n] == WHITE) {
 		count_WH++;
 	}
@@ -484,23 +484,23 @@ void COUNT(int m, int n) {									//‹î‚Ì”‚ğƒJƒEƒ“ƒg
 }
 
 void display() {
-	system("cls");									    //stdlib.h//‰æ–Ê‚ğƒNƒŠƒA‚·‚éƒRƒ}ƒ“ƒh
+	system("cls");									    //stdlib.h//ç”»é¢ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰
 	count_WH = 0;
 	count_BK = 0;
 	true_false = 0;
 	if (game_mode == GAME_MODE::SINGLE) {
-		printf("ƒ‚[ƒh: 1l       %d\n", limit);
+		printf("ãƒ¢ãƒ¼ãƒ‰: 1äºº       %d\n", limit);
 	}
 	else if (game_mode == GAME_MODE::PARE) {
-		printf("ƒ‚[ƒh: 2l       %d\n", limit);
+		printf("ãƒ¢ãƒ¼ãƒ‰: 2äºº       %d\n", limit);
 	}
 	for (int y = 0; y < FIELD_HEIGHT; y++) {
 		for (int x = 0; x < FIELD_WIDTH; x++) {
 
-			judg_wall();                                //•Ç‚Ì“–‚½‚è”»’è
+			judg_wall();                                //å£ã®å½“ãŸã‚Šåˆ¤å®š
 
 
-			if (OR[x][y] != SET) {					//ƒJ[ƒ\ƒ‹ˆÊ’uˆÈŠO‚Ìó‘Ô‚ğ‹L‰¯
+			if (OR[x][y] != SET) {					//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ä»¥å¤–ã®çŠ¶æ…‹ã‚’è¨˜æ†¶
 				tmp[x][y] = OR[x][y];
 			}
 			if ((cursorX == x) && (cursorY == y)) {
@@ -518,27 +518,27 @@ void display() {
 
 
 			if (OR[x][y] == WALL) {
-				printf("¡");
+				printf("â– ");
 			}
 			else if (OR[x][y] == NON) {
-				printf("E");
+				printf("ãƒ»");
 			}
 			else if (OR[x][y] == SET) {
-				printf("");
+				printf("â—");
 			}
 			else if (OR[x][y] == WHITE) {
 				if (w_b == true) {
-					printf("œ");
+					printf("â—");
 				}
 				else
-					printf("Z");
+					printf("ã€‡");
 			}
 			else if (OR[x][y] == BLACK) {
 				if (w_b == true) {
-					printf("›");
+					printf("â—‹");
 				}
 				else
-					printf("œ");
+					printf("â—");
 			}
 
 		}
@@ -566,22 +566,22 @@ int main() {
 				int point_menu = point % 3;
 				system("cls");
 				printf("\n");
-				printf("  <ƒIƒZƒ@ƒQ[ƒ€>\n\n\n");
-				printf("ƒ‚[ƒh‘I‘ğ:");
+				printf("  <ã‚ªã‚»ãƒ­ã€€ã‚²ãƒ¼ãƒ >\n\n\n");
+				printf("ãƒ¢ãƒ¼ãƒ‰é¸æŠ:");
 				if (point_menu == 0) {
-					printf("  ¨ 1l\n");
-					printf("                2l\n");
-					printf("                ƒIƒvƒVƒ‡ƒ“\n");
+					printf("  â†’ 1äºº\n");
+					printf("                2äºº\n");
+					printf("                ã‚ªãƒ—ã‚·ãƒ§ãƒ³\n");
 				}
 				else if (point_menu == 1) {
-					printf("     1l\n");
-					printf("             ¨ 2l\n");
-					printf("                ƒIƒvƒVƒ‡ƒ“\n");
+					printf("     1äºº\n");
+					printf("             â†’ 2äºº\n");
+					printf("                ã‚ªãƒ—ã‚·ãƒ§ãƒ³\n");
 				}
 				else if (point_menu == 2) {
-					printf("     1l\n");
-					printf("                2l\n");
-					printf("             ¨ ƒIƒvƒVƒ‡ƒ“\n");
+					printf("     1äºº\n");
+					printf("                2äºº\n");
+					printf("             â†’ ã‚ªãƒ—ã‚·ãƒ§ãƒ³\n");
 				}
 				switch (_getch()) {
 				case 'w': point--; break;
@@ -608,15 +608,15 @@ int main() {
 		else if (mode == MODE::GAME) {
 			alert = "\n";
 
-			OR[FIELD_WIDTH / 2 - 1][FIELD_HEIGHT / 2 - 1] = WHITE; t_f[FIELD_WIDTH / 2 - 1][FIELD_HEIGHT / 2 - 1] = true;						//‰Šú‹î
+			OR[FIELD_WIDTH / 2 - 1][FIELD_HEIGHT / 2 - 1] = WHITE; t_f[FIELD_WIDTH / 2 - 1][FIELD_HEIGHT / 2 - 1] = true;						//åˆæœŸé§’
 			OR[FIELD_WIDTH / 2 - 1][FIELD_HEIGHT / 2] = BLACK; t_f[FIELD_WIDTH / 2 - 1][FIELD_HEIGHT / 2] = true;
 			OR[FIELD_WIDTH / 2][FIELD_HEIGHT / 2 - 1] = BLACK; t_f[FIELD_WIDTH / 2][FIELD_HEIGHT / 2 - 1] = true;
 			OR[FIELD_WIDTH / 2][FIELD_HEIGHT / 2] = WHITE; t_f[FIELD_WIDTH / 2][FIELD_HEIGHT / 2] = true;
-			for (int j = 0; j < FIELD_WIDTH; j++) {					//‰¡•Ç‚Ì¶¬
+			for (int j = 0; j < FIELD_WIDTH; j++) {					//æ¨ªå£ã®ç”Ÿæˆ
 				OR[0][j] = WALL; t_f[0][j] = true;
 				OR[FIELD_WIDTH - 1][j] = WALL; t_f[FIELD_WIDTH - 1][j] = true;
 			}
-			for (int j = 1; j < FIELD_HEIGHT; j++) {				//c•Ç‚Ì¶¬
+			for (int j = 1; j < FIELD_HEIGHT; j++) {				//ç¸¦å£ã®ç”Ÿæˆ
 				OR[j][0] = WALL; t_f[j][0] = true;
 				OR[j][FIELD_HEIGHT - 1] = WALL; t_f[j][FIELD_HEIGHT - 1] = true;
 			}
@@ -667,7 +667,7 @@ int main() {
 							}
 						}
 						else if (CHECK_BLACK(cursorX, cursorY) == false || CHECK_WHITE(cursorX, cursorY) == false) {
-							alert = "‚±‚ÌêŠ‚É‚Í’u‚¯‚Ü‚¹‚ñ\n";
+							alert = "ã“ã®å ´æ‰€ã«ã¯ç½®ã‘ã¾ã›ã‚“\n";
 						}
 						break;
 					case 'k':
@@ -686,7 +686,7 @@ int main() {
 					}
 					display();
 				}
-				if (true_false - (FIELD_HEIGHT + FIELD_WIDTH) * 2 + 4 == (FIELD_HEIGHT - 2) * (FIELD_WIDTH - 2)) {			//”Õ–Ê‚ª–„‚Ü‚Á‚½‚çAƒQ[ƒ€ƒ‚[ƒh‚©‚ç”»’èƒ‚[ƒh‚Ö
+				if (true_false - (FIELD_HEIGHT + FIELD_WIDTH) * 2 + 4 == (FIELD_HEIGHT - 2) * (FIELD_WIDTH - 2)) {			//ç›¤é¢ãŒåŸ‹ã¾ã£ãŸã‚‰ã€ã‚²ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰åˆ¤å®šãƒ¢ãƒ¼ãƒ‰ã¸
 					mode = MODE::JUDG;
 				}
 				if (mode != MODE::GAME) {
@@ -699,28 +699,28 @@ int main() {
 			while (1) {
 				system("cls");
 				printf("\n");
-				printf("       <Œ‹‰Ê>\n");
+				printf("       <çµæœ>\n");
 				printf("\n\n");
 				if (w_b == true) {
-					printf("    ”’‹î‚Ì”:"); printf("  %d\n", count_WH);
-					printf("    •‹î‚Ì”:"); printf("  %d\n", count_BK);
+					printf("    ç™½é§’ã®æ•°:"); printf("  %d\n", count_WH);
+					printf("    é»’é§’ã®æ•°:"); printf("  %d\n", count_BK);
 					printf("\n\n");
 					if (count_WH > count_BK) {
-						printf("    ‚ ‚È‚½‚ÌŸ‚¿\n");
+						printf("    ã‚ãªãŸã®å‹ã¡\n");
 					}
 					else {
-						printf("     ‘Šè‚ÌŸ‚¿\n");
+						printf("     ç›¸æ‰‹ã®å‹ã¡\n");
 					}
 				}
 				else if (w_b == false) {
-					printf("    ”’‹î‚Ì”:"); printf("  %d\n", count_BK);
-					printf("    •‹î‚Ì”:"); printf("  %d\n", count_WH);
+					printf("    ç™½é§’ã®æ•°:"); printf("  %d\n", count_BK);
+					printf("    é»’é§’ã®æ•°:"); printf("  %d\n", count_WH);
 					printf("\n\n");
 					if (count_WH < count_BK) {
-						printf("    ‘Šè‚ÌŸ‚¿\n");
+						printf("    ç›¸æ‰‹ã®å‹ã¡\n");
 					}
 					else {
-						printf("     ‚ ‚È‚½‚ÌŸ‚¿\n");
+						printf("     ã‚ãªãŸã®å‹ã¡\n");
 					}
 				}
 				switch (_getch()) {
@@ -738,23 +738,23 @@ int main() {
 				system("cls");
 				int pause_point = point % 3;
 				printf("\n");
-				printf("      <’†’fƒƒjƒ…[>\n");
+				printf("      <ä¸­æ–­ãƒ¡ãƒ‹ãƒ¥ãƒ¼>\n");
 				printf("\n");
 				printf(" ----------------------\n");
 				if (pause_point == 0) {
-					printf("|     ¨ ÄŠJ          |\n");
-					printf("|        ƒŠƒZƒbƒg      |\n");
-					printf("|        ƒƒjƒ…[      |\n");
+					printf("|     â†’ å†é–‹          |\n");
+					printf("|        ãƒªã‚»ãƒƒãƒˆ      |\n");
+					printf("|        ãƒ¡ãƒ‹ãƒ¥ãƒ¼      |\n");
 				}
 				else if (pause_point == 1) {
-					printf("|        ÄŠJ          |\n");
-					printf("|     ¨ ƒŠƒZƒbƒg      |\n");
-					printf("|        ƒƒjƒ…[      |\n");
+					printf("|        å†é–‹          |\n");
+					printf("|     â†’ ãƒªã‚»ãƒƒãƒˆ      |\n");
+					printf("|        ãƒ¡ãƒ‹ãƒ¥ãƒ¼      |\n");
 				}
 				else if (pause_point == 2) {
-					printf("|        ÄŠJ          |\n");
-					printf("|        ƒŠƒZƒbƒg      |\n");
-					printf("|     ¨ ƒƒjƒ…[      |\n");
+					printf("|        å†é–‹          |\n");
+					printf("|        ãƒªã‚»ãƒƒãƒˆ      |\n");
+					printf("|     â†’ ãƒ¡ãƒ‹ãƒ¥ãƒ¼      |\n");
 				}
 				printf(" ----------------------\n");
 
@@ -765,10 +765,10 @@ int main() {
 					if (pause_point == 0) {
 						mode = MODE::GAME;
 					}
-					else if (pause_point == 1) {//’†’f>>ƒŠƒZƒbƒg>>ƒQ[ƒ€
+					else if (pause_point == 1) {//ä¸­æ–­>>ãƒªã‚»ãƒƒãƒˆ>>ã‚²ãƒ¼ãƒ 
 						mode = MODE::RESET_G;
 					}
-					else if (pause_point == 2) {//’†’f>>ƒŠƒZƒbƒg>>ƒƒjƒ…[
+					else if (pause_point == 2) {//ä¸­æ–­>>ãƒªã‚»ãƒƒãƒˆ>>ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 						mode = MODE::RESET_M;
 					}
 					break;
@@ -800,156 +800,156 @@ int main() {
 			}
 		}
 
-		else if (mode == MODE::OPTION) {                                   //‚¿ŠÔ//©•ª‚Ì‹îF//”Õ–ÊƒTƒCƒY
+		else if (mode == MODE::OPTION) {                                   //æŒã¡æ™‚é–“//è‡ªåˆ†ã®é§’è‰²//ç›¤é¢ã‚µã‚¤ã‚º
 			int point_up = 0;
 			int point_right = 0;
-			const char* limTime = "40•b";
-			const char* field = "8~8";
-			const char* WorB = "”’";
+			const char* limTime = "40ç§’";
+			const char* field = "8Ã—8";
+			const char* WorB = "ç™½";
 
 			if (wait_time == 10) {
-				limTime = "10•b";
+				limTime = "10ç§’";
 			}
 			else if (wait_time == 20) {
-				limTime = "20•b";
+				limTime = "20ç§’";
 			}
 			else if (wait_time == 30) {
-				limTime = "30•b";
+				limTime = "30ç§’";
 			}
 			else if (wait_time == 40) {
-				limTime = "40•b";
+				limTime = "40ç§’";
 			}
 			else if (wait_time == 50) {
-				limTime = "50•b";
+				limTime = "50ç§’";
 			}
 			else if (wait_time == 60) {
-				limTime = "60•b";
+				limTime = "60ç§’";
 			}
 			if (FIELD_HEIGHT == 8) {
-				field = "6~6";
+				field = "6Ã—6";
 			}
 			else if (FIELD_HEIGHT == 10) {
-				field = "8~8";
+				field = "8Ã—8";
 			}
 			else if (FIELD_HEIGHT == 12) {
-				field = "10~10";
+				field = "10Ã—10";
 			}
 			else if (FIELD_HEIGHT == 14) {
-				field = "12~12";
+				field = "12Ã—12";
 			}
 			if (w_b == true) {
-				WorB = "”’";
+				WorB = "ç™½";
 			}
 			else if (w_b == false) {
-				WorB = "•";
+				WorB = "é»’";
 			}
 
 			while (1) {
 				system("cls");
 				printf("\n");
-				printf("    <ƒIƒvƒVƒ‡ƒ“>\n");
+				printf("    <ã‚ªãƒ—ã‚·ãƒ§ãƒ³>\n");
 				printf("\n\n");
 				if (point_up % 4 == 0) {
 					if (point_right % 3 == 0) {
-						printf("  œ [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    E30•b    E40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("  â— [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 					else if (point_right % 3 == 1) {
-						printf("     [©•ª‚Ì‹îF]    œ”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    E30•b    E40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    â—ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 					else if (point_right % 3 == 2) {
-						printf("     [©•ª‚Ì‹îF]    E”’‹î    œ•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    E30•b    E40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    â—é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 				}
 				else if (point_up % 4 == 1) {
 					if (point_right % 5 == 0) {
-						printf("     [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("  œ [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    E30•b    E40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("  â— [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 					else if (point_right % 5 == 1) {
-						printf("     [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    œ6~6    E8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    E30•b    E40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    â—6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 					else if (point_right % 5 == 2) {
-						printf("     [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    E6~6    œ8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    E30•b    E40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    â—8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 					else if (point_right % 5 == 3) {
-						printf("     [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    œ10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    E30•b    E40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    â—10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 					else if (point_right % 5 == 4) {
-						printf("     [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    E10~10  œ12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    E30•b    E40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  â—12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 				}
 				else if (point_up % 4 == 2) {
 					if (point_right % 7 == 0) {
-						printf("     [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("  œ [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    E30•b    E40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("  â— [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 					else if (point_right % 7 == 1) {
-						printf("     [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    œ10•b    E20•b    E30•b    E40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    â—10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 					else if (point_right % 7 == 2) {
-						printf("     [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    œ20•b    E30•b    E40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    â—20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 					else if (point_right % 7 == 3) {
-						printf("     [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    œ30•b    E40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    â—30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 					else if (point_right % 7 == 4) {
-						printf("     [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    E30•b    œ40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    â—40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 					else if (point_right % 7 == 5) {
-						printf("     [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    E30•b    E40•b    œ50•b    E60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    â—50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 					else if (point_right % 7 == 6) {
-						printf("     [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-						printf("     [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-						printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    E30•b    E40•b    E50•b    œ60•b            ["); printf(limTime); printf("]\n\n");
+						printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+						printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+						printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    â—60ç§’            ["); printf(limTime); printf("]\n\n");
 						printf("     back\n\n");
 					}
 				}
 				else if (point_up % 4 == 3) {
-					printf("     [©•ª‚Ì‹îF]    E”’‹î    E•‹î                                                    ["); printf(WorB); printf("]\n\n");
-					printf("     [”Õ–ÊƒTƒCƒY]    E6~6    E8~8    E10~10  E12~12                              ["); printf(field); printf("]\n\n");
-					printf("     [ ‘Ò‚¿ŠÔ ]    E10•b    E20•b    E30•b    E40•b    E50•b    E60•b            ["); printf(limTime); printf("]\n\n");
-					printf("  œ back\n\n");
+					printf("     [è‡ªåˆ†ã®é§’è‰²]    ãƒ»ç™½é§’    ãƒ»é»’é§’                                                    ["); printf(WorB); printf("]\n\n");
+					printf("     [ç›¤é¢ã‚µã‚¤ã‚º]    ãƒ»6Ã—6    ãƒ»8Ã—8    ãƒ»10Ã—10  ãƒ»12Ã—12                              ["); printf(field); printf("]\n\n");
+					printf("     [ å¾…ã¡æ™‚é–“ ]    ãƒ»10ç§’    ãƒ»20ç§’    ãƒ»30ç§’    ãƒ»40ç§’    ãƒ»50ç§’    ãƒ»60ç§’            ["); printf(limTime); printf("]\n\n");
+					printf("  â— back\n\n");
 				}
 				switch (_getch()) {
 				case 'w':point_up--; break;
@@ -959,49 +959,49 @@ int main() {
 				case '\r':
 					if (point_up % 4 == 1) {
 						if (point_right % 5 == 1) {
-							field = "6~6";
+							field = "6Ã—6";
 							FIELD_HEIGHT = 8;
 							FIELD_WIDTH = 8;
 						}
 						else if (point_right % 5 == 2) {
-							field = "8~8";
+							field = "8Ã—8";
 							FIELD_HEIGHT = 10;
 							FIELD_WIDTH = 10;
 						}
 						else if (point_right % 5 == 3) {
-							field = "10~10";
+							field = "10Ã—10";
 							FIELD_HEIGHT = 12;
 							FIELD_WIDTH = 12;
 						}
 						else if (point_right % 5 == 4) {
-							field = "12~12";
+							field = "12Ã—12";
 							FIELD_HEIGHT = 14;
 							FIELD_WIDTH = 14;
 						}
 					}
 					else if (point_up % 4 == 2) {
 						if (point_right % 7 == 1) {
-							limTime = "10•b";
+							limTime = "10ç§’";
 							wait_time = 10;
 						}
 						else if (point_right % 7 == 2) {
-							limTime = "20•b";
+							limTime = "20ç§’";
 							wait_time = 20;
 						}
 						else if (point_right % 7 == 3) {
-							limTime = "30•b";
+							limTime = "30ç§’";
 							wait_time = 30;
 						}
 						else if (point_right % 7 == 4) {
-							limTime = "40•b";
+							limTime = "40ç§’";
 							wait_time = 40;
 						}
 						else if (point_right % 7 == 5) {
-							limTime = "50•b";
+							limTime = "50ç§’";
 							wait_time = 50;
 						}
 						else if (point_right % 7 == 6) {
-							limTime = "60•b";
+							limTime = "60ç§’";
 							wait_time = 60;
 						}
 					}
@@ -1010,11 +1010,11 @@ int main() {
 					}
 					else if (point_up % 4 == 0) {
 						if (point_right % 3 == 1) {
-							WorB = "”’";
+							WorB = "ç™½";
 							w_b = true;
 						}
 						else if (point_right % 3 == 2) {
-							WorB = "•";
+							WorB = "é»’";
 							w_b = false;
 						}
 					}
