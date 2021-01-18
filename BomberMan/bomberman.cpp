@@ -5,8 +5,6 @@
 
 #define MAX_bomb 25
 
-//test
-
 
 int FIELD_WIDTH = 21;
 int FIELD_HIGHT = 21;
@@ -14,7 +12,8 @@ int FIELD_HIGHT = 21;
 bool selected;								//‰Šú‹î‚ğƒZƒbƒg‚µ‚½‚©(true)‚µ‚Ä‚¢‚È‚¢‚©(false)
 bool hit;
 
-enum class MODE { GAME, MENU, GAMEOVER, GAMECREARE };
+enum class MODE { MENU, GAME, GAMEOVER, GAMECREARE };
+//enum class MODE { GAME, MENU, GAMEOVER, GAMECREARE };
 enum class BOMB { SPECIAL, NORMAL, LONG_ };
 enum class STATE { NON, WALL, GRASS, NORMAL_BOM, LONG_BOM, SPECIAL_BOM, ENEMY, SET };
 
@@ -442,9 +441,34 @@ int main() {
 			}
 		}
 		else if (mode == MODE::MENU) {
+			time_t retime = time(NULL);
 			while (1) {
-				system("cls");
-				printf("ƒƒjƒ…[");
+				if (retime + 3 < time(NULL)) {
+					retime = time(NULL);
+					system("cls");
+					printf("¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡\n");
+					printf("\n\n\n\n");
+					printf("        œ`* ƒ{ƒ“ƒo[ƒ}ƒ“ œ`*\n");
+					printf("\n\n\n\n");
+					printf("                 <Enter>\n");
+					printf("\n\n\n");
+					printf(" ________\n");
+					printf("|‘€ìà–¾|\n");
+					printf("PPPPPPPPPPPPPPPPPPPPP\n");
+					printf(" w,a,s,d :ƒJ[ƒ\ƒ‹ˆÚ“®\n");
+					printf("    p    :”š’e‚Ìİ’u\n");
+					printf("    e    :”š’e‚ÌØ‚è‘Ö‚¦\n");
+					printf("    q    :’†’fƒƒjƒ…[\n");
+					printf("¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡\n");
+				}
+				if (_kbhit()) {
+					switch (_getch()) {
+					case '\r':mode = MODE::GAME; break;
+					}
+				}
+				if (mode != MODE::MENU) {
+					break;
+				}
 			}
 		}
 		else if (mode == MODE::GAMECREARE) {
