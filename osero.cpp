@@ -3,6 +3,8 @@
 #include<stdlib.h>
 #include<time.h>
 
+//test
+
 int FIELD_WIDTH = 10;
 int FIELD_HEIGHT = 10;
 
