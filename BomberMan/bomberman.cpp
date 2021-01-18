@@ -5,6 +5,8 @@
 
 #define MAX_bomb 25
 
+//test
+
 
 int FIELD_WIDTH = 21;
 int FIELD_HIGHT = 21;
