@@ -12,7 +12,7 @@ int FIELD_HIGHT = 21;
 bool selected;								//èâä˙ãÓÇÉZÉbÉgÇµÇΩÇ©(true)ÇµÇƒÇ¢Ç»Ç¢Ç©(false)
 bool hit;
 
-enum class MODE { GAMECREARE, GAME, GAMEOVER, MENU };
+enum class MODE { GAMEOVER, GAME, GAMECREARE, MENU };
 //enum class MODE { GAME, MENU, GAMEOVER, GAMECREARE };
 enum class BOMB { SPECIAL, NORMAL, LONG_ };
 enum class STATE { NON, WALL, GRASS, NORMAL_BOM, LONG_BOM, SPECIAL_BOM, ENEMY, SET };
@@ -500,7 +500,31 @@ int main() {
 			}
 		}
 		else if (mode == MODE::GAMEOVER) {
-
+			time_t retime = time(NULL);
+			while (1) {
+				if (retime + 3 < time(NULL)) {
+					retime = time(NULL);
+					system("cls");
+					printf("Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°\n");
+					printf("\n\n\n");
+					printf("             __________________           \n");
+					printf("             ÉQÅ[ÉÄÅ@ÉIÅ[ÉoÅ[!!Å@         \n");
+					printf("             ÅPÅPÅPÅPÅPÅPÅPÅPÅP           \n\n");
+					printf("Å@(;ÅL•É÷•)Å@              Å@Å@ Å@(ﬂÑDﬂ;) \n");
+					printf("\n\n\n\n\n\n\n\n");
+					printf("                 <Enter>\n");
+					printf("\n\n\n");
+					printf("Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°\n");
+				}
+				if (_kbhit()) {
+					switch (_getch()) {
+					case '\r':mode = MODE::MENU; break;
+					}
+				}
+				if (mode != MODE::GAMEOVER) {
+					break;
+				}
+			}
 		}
 	}
 }
