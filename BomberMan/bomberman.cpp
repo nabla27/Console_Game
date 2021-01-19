@@ -349,6 +349,8 @@ bool judg_move(int x, int y) {
 		hit = true;
 		return true;
 	}
+	else
+		return false;
 }
 
 
@@ -558,10 +560,10 @@ int main() {
 					switch (_getch()) {
 					case '\r':
 						if (cursor % 2 == 0) {
-							mode == MODE::GAME;
+							mode = MODE::GAME;
 						}
 						else if (cursor % 2 == 1) {
-							mode == MODE::RESET;
+							mode = MODE::RESET;
 						}
 					case 'w':cursor--; break;
 					case 's':cursor++; break;
