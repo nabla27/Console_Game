@@ -528,7 +528,33 @@ int main() {
 		}
 
 		else if (mode == MODE::STOP) {
-
+			time_t retime = time(NULL);
+			while (1) {
+				if (retime + 3 < time(NULL)) {
+					retime = time(NULL);
+					system("cls");
+					printf("Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°\n");
+					printf("\n\n\n");
+					printf("             __________________           \n");
+					printf("			   íÜífÅ@ÉÅÉjÉÖÅ[Å@           \n");
+					printf("             ÅPÅPÅPÅPÅPÅPÅPÅPÅP           \n\n");
+					printf(" (; •`Ñt•ÅL)Å@              Å@Å@(ÅLÅ§ÅM*) \n");
+					printf("\n\n\n\n\n\n");
+					printf("Å@Å@           Å@Å® çƒäJ Å©              \n");
+					printf("      Å@        ÉÅÉjÉÖÅ[âÊñ \n");
+					printf("                 <Enter>\n");
+					printf("\n\n\n");
+					printf("Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°Å°\n");
+				}
+				if (_kbhit()) {
+					switch (_getch()) {
+					case '\r':mode = MODE::MENU; break;
+					}
+				}
+				if (mode != MODE::GAMEOVER) {
+					break;
+				}
+			}
 		}
 	}
 }
