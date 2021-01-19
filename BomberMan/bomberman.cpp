@@ -433,11 +433,10 @@ int main() {
 					alert = "\n";
 
 				if (hit == true) {
-					mode = MODE::MENU;
+					mode = MODE::GAMEOVER;							//当たったらゲームオーバーモードに切り替え								
 				}
 
-				if (mode != MODE::GAME) {
-					//初期化処理を行う
+				if (mode != MODE::GAME) {							//ゲームモードでなくなったら他のモードへ移行
 					break;
 				}
 			}
