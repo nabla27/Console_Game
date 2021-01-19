@@ -460,7 +460,7 @@ int main() {
 					printf(" w,a,s,d :カーソル移動\n");
 					printf("    p    :爆弾の設置\n");
 					printf("    e    :爆弾の切り替え\n");
-					printf("    q    :中断メニュー\n");
+					printf("    q    :中断メニュー\n\n");
 					printf("■■■■■■■■■■■■■■■■■■■■■\n");
 				}
 				if (_kbhit()) {
