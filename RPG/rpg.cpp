@@ -8,9 +8,10 @@
 #define FIELD_HIGHT 29
 
 
-enum class MODE { GAME, MODE, SAVE, LOAD }; 
-MODE mode;
-enum class MAP { LOCAL, CAVE1 };
+enum class MODE { GAME, MODE, SAVE, LOAD }; MODE mode;
+enum class MAP { LOCAL, EAST1 }; MAP map;
+enum class BUILD { HOME, CAVE1, TOWER }; BUILD build;
+enum class CHARA { ENEMY1, ENEMY2, ENEMY3 }; CHARA chara;
 
 
 
