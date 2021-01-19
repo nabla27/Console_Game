@@ -539,10 +539,10 @@ int main() {
 					printf("■■■■■■■■■■■■■■■■■■■■■\n");
 					printf("\n\n\n");
 					printf("             __________________           \n");
-					printf("			   中断　メニュー　           \n");
+					printf("               中断　メニュー　           \n");
 					printf("             ￣￣￣￣￣￣￣￣￣           \n\n");
 					printf(" (; ･`д･´)　              　　(´▽｀*) \n");
-					printf("\n\n\n\n\n\n");
+					printf("\n\n\n\n");
 					if (cursor % 2 == 0) {
 						printf("　　           　→ 再開 ←              \n");
 						printf("      　        メニュー画面\n");
@@ -551,7 +551,8 @@ int main() {
 						printf("　　           　   再開                 \n");
 						printf("      　     → メニュー画面 ←\n");
 					}
-					printf("                 <Enter>\n");
+					printf("\n\n");
+					printf("                  <Enter>\n");
 					printf("\n\n\n");
 					printf("■■■■■■■■■■■■■■■■■■■■■\n");
 				}
@@ -564,11 +565,31 @@ int main() {
 						else if (cursor % 2 == 1) {
 							mode = MODE::RESET;
 						}
-					case 'w':cursor--; break;
+					case 'w':cursor++; break;
 					case 's':cursor++; break;
 					}
+					system("cls");
+					printf("■■■■■■■■■■■■■■■■■■■■■\n");
+					printf("\n\n\n");
+					printf("             __________________           \n");
+					printf("               中断　メニュー　           \n");
+					printf("             ￣￣￣￣￣￣￣￣￣           \n\n");
+					printf(" (; ･`д･´)　              　　(´▽｀*) \n");
+					printf("\n\n\n\n");
+					if (cursor % 2 == 0) {
+						printf("　　           　→ 再開 ←              \n");
+						printf("      　        メニュー画面\n");
+					}
+					else if (cursor % 2 == 1) {
+						printf("　　           　   再開                 \n");
+						printf("      　     → メニュー画面 ←\n");
+					}
+					printf("\n\n");
+					printf("                  <Enter>\n");
+					printf("\n\n\n");
+					printf("■■■■■■■■■■■■■■■■■■■■■\n");
 				}
-				if (mode != MODE::GAMEOVER) {
+				if (mode != MODE::STOP) {
 					break;
 				}
 			}
