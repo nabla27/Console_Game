@@ -10,7 +10,7 @@
 
 enum class MODE { GAME, MODE, SAVE, LOAD }; MODE mode;
 enum class MAP { LOCAL, EAST1 }; MAP map;
-enum class BUILD { HOME, CAVE1, TOWER }; BUILD build;
+enum class BUILD_local { NON, HOME, CAVE1, TOWER }; BUILD_local build_local;
 enum class CHARA { ENEMY1, ENEMY2, ENEMY3 }; CHARA chara;
 
 int cursorX = 30;
@@ -34,6 +34,9 @@ void disp_local() {
 			else if (map_local[y][x] == 1) {
 				printf("Λ");
 			}
+			else if (map_local[y][x] == 2) {
+				printf("町");
+			}
 		}
 		printf("\n");
 	}
@@ -42,6 +45,10 @@ void disp_local() {
 bool move_local(int x, int y) {
 	if (x<0 || x>FIELD_WIDTH - 1 || y<0 || y>FIELD_HIGHT - 1) {     //マップの外にはいけない
 		return false;
+	}
+	else if (x == 30 && y == 14) {									//homeへ入る
+		build_local = BUILD_local::HOME;
+		return true;
 	}
 	if (map_local[y][x] == 1) {										//山には行けない
 		return false;
