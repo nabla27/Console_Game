@@ -12,7 +12,7 @@ int FIELD_HIGHT = 21;
 bool selected;								//初期駒をセットしたか(true)していないか(false)
 bool hit;
 
-enum class MODE { STOP, GAMEOVER, GAME, GAMECREARE, MENU, RESET };
+enum class MODE { MENU, GAMEOVER, GAME, GAMECREARE, STOP, RESET };
 //enum class MODE { GAME, MENU, GAMEOVER, GAMECREARE, STOP };
 enum class BOMB { SPECIAL, NORMAL, LONG_ };
 enum class STATE { NON, WALL, GRASS, NORMAL_BOM, LONG_BOM, SPECIAL_BOM, ENEMY, SET };
@@ -421,6 +421,7 @@ int main() {
 						else if (bom == BOMB::LONG_) {
 							bom = BOMB::NORMAL;
 						}
+					case 'q':mode = MODE::STOP; break;
 					}
 					display();
 				}
@@ -442,7 +443,7 @@ int main() {
 			}
 		}
 		else if (mode == MODE::MENU) {
-			time_t retime = time(NULL);
+			time_t retime = time(NULL) - 3;
 			while (1) {
 				if (retime + 3 < time(NULL)) {
 					retime = time(NULL);
@@ -474,7 +475,7 @@ int main() {
 		}
 
 		else if (mode == MODE::GAMECREARE) {
-			time_t retime = time(NULL);
+			time_t retime = time(NULL) - 3;
 			while (1) {
 				if (retime + 3 < time(NULL)) {
 					retime = time(NULL);
@@ -502,7 +503,7 @@ int main() {
 		}
 
 		else if (mode == MODE::GAMEOVER) {
-			time_t retime = time(NULL);
+			time_t retime = time(NULL) - 3;
 			while (1) {
 				if (retime + 3 < time(NULL)) {
 					retime = time(NULL);
@@ -530,7 +531,7 @@ int main() {
 		}
 
 		else if (mode == MODE::STOP) {
-			time_t retime = time(NULL);
+			time_t retime = time(NULL) - 3;
 			int cursor = 0;                 //セレクト
 			while (1) {
 				if (retime + 3 < time(NULL)) {
@@ -597,6 +598,10 @@ int main() {
 
 		else if (mode == MODE::RESET) {
 			//パラメータリセット処理
+			while (1) {
+				system("cls");
+				printf("リセット処理\n");
+			}
 		}
 	}
 }
