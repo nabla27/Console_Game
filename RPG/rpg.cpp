@@ -155,7 +155,7 @@ int main() {
 	while (1){
 		if (mode == MODE::GAME) {
 			time_t replot = time(NULL) - 5;
-			int battle_count = 15 + rand() % 10;
+			int battle_count = 15 + rand() % 15;
 			while (1) {
 				if (replot  + 5 < time(NULL)) {
 					replot = time(NULL);
@@ -202,12 +202,12 @@ int main() {
 					//ƒoƒgƒ‹
 					if (count > battle_count && build_local == BUILD_LOCAL::NON) {
 						count = 0;
-						battle_count = 15 + rand() % 10;
+						battle_count = 15 + rand() % 15;
 						enemy.section(rand() % 3);
 					}
 					else if (count > battle_count && build_local != BUILD_LOCAL::NON) {
 						count = 0;
-						battle_count = 15 + rand() % 10;
+						battle_count = 15 + rand() % 15;
 					}
 
 				}
