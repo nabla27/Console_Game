@@ -6,7 +6,9 @@
 #include "build.h"
 
 using namespace name_build;
+using namespace enemy_disp;
 BUILD build;
+ENEMY enemy;
 
 #define FIELD_WIDTH 60
 #define FIELD_HIGHT 29
@@ -19,6 +21,8 @@ enum class CHARA { ENEMY1, ENEMY2, ENEMY3 }; CHARA chara;
 
 int cursorX = 30;
 int cursorY = 15;
+
+int count = 0;
 
 
 
@@ -141,7 +145,8 @@ bool move_local_home(int x, int y) {
 
 
 //================================================================================================================
-
+//メイン関数
+//===========
 
 
 
@@ -150,6 +155,7 @@ int main() {
 	while (1){
 		if (mode == MODE::GAME) {
 			time_t replot = time(NULL) - 5;
+			int battle_count = 15 + rand() % 10;
 			while (1) {
 				if (replot  + 5 < time(NULL)) {
 					replot = time(NULL);
@@ -167,25 +173,21 @@ int main() {
 					if (map == MAP::LOCAL) {
 						if (build_local == BUILD_LOCAL::NON) {
 							switch (_getch()) {
-							case 'w':if (move_local_non(cursorX, cursorY - 1) == true) { cursorY--; }; break;
-							case 'a':if (move_local_non(cursorX - 1, cursorY) == true) { cursorX--; }; break;
-							case 's':if (move_local_non(cursorX, cursorY + 1) == true) { cursorY++; }; break;
-							case 'd':if (move_local_non(cursorX + 1, cursorY) == true) { cursorX++; }; break;
+							case 'w':if (move_local_non(cursorX, cursorY - 1) == true) { cursorY--; count++; }; break;
+							case 'a':if (move_local_non(cursorX - 1, cursorY) == true) { cursorX--; count++; }; break;
+							case 's':if (move_local_non(cursorX, cursorY + 1) == true) { cursorY++; count++; }; break;
+							case 'd':if (move_local_non(cursorX + 1, cursorY) == true) { cursorX++; count++; }; break;
 							}
 						}
 						else if (build_local == BUILD_LOCAL::HOME) {
 							switch (_getch()) {
-							case 'w':if (move_local_home(cursorX, cursorY - 1) == true) { cursorY--; }; break;
-							case 'a':if (move_local_home(cursorX - 1, cursorY) == true) { cursorX--; }; break;
-							case 's':if (move_local_home(cursorX, cursorY + 1) == true) { cursorY++; }; break;
-							case 'd':if (move_local_home(cursorX + 1, cursorY) == true) { cursorX++; }; break;
+							case 'w':if (move_local_home(cursorX, cursorY - 1) == true) { cursorY--; count++; }; break;
+							case 'a':if (move_local_home(cursorX - 1, cursorY) == true) { cursorX--; count++; }; break;
+							case 's':if (move_local_home(cursorX, cursorY + 1) == true) { cursorY++; count++; }; break;
+							case 'd':if (move_local_home(cursorX + 1, cursorY) == true) { cursorX++; count++; }; break;
 							}
 						}
 					}
-
-
-
-
 
 					//キー入力があったら即座に再描画
 					if (map == MAP::LOCAL) {
@@ -196,6 +198,18 @@ int main() {
 							disp_local_home();
 						}
 					}
+
+					//バトル
+					if (count > battle_count && build_local == BUILD_LOCAL::NON) {
+						count = 0;
+						battle_count = 15 + rand() % 10;
+						enemy.section(rand() % 3);
+					}
+					else if (count > battle_count && build_local != BUILD_LOCAL::NON) {
+						count = 0;
+						battle_count = 15 + rand() % 10;
+					}
+
 				}
 			}
 		}

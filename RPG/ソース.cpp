@@ -34,9 +34,16 @@ void ENEMY::monster3() {
 
 
 
+
+void ENEMY::battle_disp() {
+	printf("\n\n\n");
+	printf("battle test display");
+}
+
+
 void ENEMY::section(int i) {
 	while (1) {
-		printf("cls");
+		system("cls");
 		if (i == 0) {
 			monster1();
 		}
@@ -55,7 +62,3 @@ void ENEMY::section(int i) {
 /*****************************************************************************************************/
 
 
-void battle_disp() {
-	printf("\n\n");
-	printf("battle section display\n");
-}

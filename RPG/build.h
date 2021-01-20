@@ -22,6 +22,7 @@ namespace enemy_disp {
 	class ENEMY {
 	public:
 		void section(int i);
+		void battle_disp();
 		void monster1();
 		void monster2();
 		void monster3();
