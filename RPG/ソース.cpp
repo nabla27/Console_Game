@@ -4,16 +4,40 @@ using namespace name_build;
 using namespace enemy_disp;
 
 void BUILD::rest() {
+	bool exit = false;
 	while (1) {
 		system("cls");
 		printf("rest\n");
+
+		//テスト用
+		if (_kbhit()) {
+			switch (_getch()) {
+			case '\r':exit = true; break;
+			}
+		}
+
+		if (exit == true) {
+			break;
+		}
 	}
 }
 
 void BUILD::weapon() {
+	bool exit = false;
 	while (1) {
 		system("cls");
 		printf("wepon shop\n");
+
+		//テスト用
+		if (_kbhit()) {
+			switch (_getch()) {
+			case '\r':exit = true; break;
+			}
+		}
+
+		if (exit == true) {
+			break;
+		}
 	}
 }
 
@@ -42,6 +66,7 @@ void ENEMY::battle_disp() {
 
 
 void ENEMY::section(int i) {
+	bool exit = false;
 	while (1) {
 		system("cls");
 		if (i == 0) {
@@ -55,6 +80,17 @@ void ENEMY::section(int i) {
 		}
 
 		battle_disp();
+
+		//テスト用
+		if (_kbhit()) {
+			switch (_getch()) {
+			case '\r':exit = true; break;
+			}
+		}
+
+		if (exit == true) {
+			break;
+		}
 	}
 }
 
