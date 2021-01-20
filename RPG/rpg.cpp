@@ -42,6 +42,15 @@ void disp_local_non() {
 			else if (map_local_non[y][x] == 2) {
 				printf("町");
 			}
+			else if (map_local_non[y][x] == 3) {
+				printf(" |");
+			}
+			else if (map_local_non[y][x] == 4) {
+				printf("| ");
+			}
+			else if (map_local_non[y][x] == 5) {
+				printf("__");
+			}
 		}
 		printf("\n");
 	}
@@ -52,9 +61,11 @@ bool move_local_non(int x, int y) {
 	}
 	else if (x == 30 && y == 14) {									//homeへ入る
 		build_local = BUILD_LOCAL::HOME;
-		return true;
+		cursorX = 29;												//homeの初期位置
+		cursorY = 27;
+		return false;
 	}
-	if (map_local_home[y][x] == 1) {										//山には行けない
+	else if (map_local_non[y][x] == 1 || map_local_non[y][x] == 3 || map_local_non[y][x] == 4 || map_local_non[y][x] == 5) {		//山、壁1、壁2には行けない
 		return false;
 	}
 	else
@@ -75,9 +86,6 @@ void disp_local_home() {
 			else if (map_local_home[y][x] == 1) {
 				printf("■");
 			}
-			else if (map_local_home[y][x] == 2) {
-				printf("店");
-			}
 		}
 		printf("\n");
 	}
@@ -87,11 +95,13 @@ bool move_local_home(int x, int y) {
 	if (x<0 || x>FIELD_WIDTH - 1 || y<0 || y>FIELD_HIGHT - 1) {     //マップの外にはいけない
 		return false;
 	}
-	else if (x == 30 && y == 14) {									//homeへ入る
-		build_local = BUILD_LOCAL::HOME;
-		return true;
+	else if ((x == 28 || x==29 || x==30 ) && y == 28) {				//町の外へ出る
+		build_local = BUILD_LOCAL::NON;
+		cursorX = 30;
+		cursorY = 15;
+		return false;
 	}
-	if (map_local_home[y][x] == 1) {								//壁の外には行けない
+	else if (map_local_home[y][x] == 1) {								//壁の外には行けない
 		return false;
 	}
 	else
