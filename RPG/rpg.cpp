@@ -61,6 +61,9 @@ void disp_local_non() {
 			else if (map_local_non[y][x] == 5) {
 				printf("__");
 			}
+			else if (map_local_non[y][x] == 6) {
+				printf("##");
+			}
 		}
 		printf("\n");
 	}
