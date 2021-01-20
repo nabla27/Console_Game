@@ -3,6 +3,10 @@
 #include <conio.h>
 #include <time.h>
 #include "field_map.h"
+#include "build.h"
+
+using namespace name_build;
+BUILD build;
 
 #define FIELD_WIDTH 60
 #define FIELD_HIGHT 29
@@ -15,6 +19,8 @@ enum class CHARA { ENEMY1, ENEMY2, ENEMY3 }; CHARA chara;
 
 int cursorX = 30;
 int cursorY = 15;
+
+
 
 //===============================================
 //マップ配列を扱う時、x,y座標が逆になることに注意
@@ -86,6 +92,33 @@ void disp_local_home() {
 			else if (map_local_home[y][x] == 1) {
 				printf("■");
 			}
+			else if (map_local_home[y][x] == 2) {
+				printf("||");
+			}
+			else if (map_local_home[y][x] == 3) {
+				printf("я");
+			}
+			else if (map_local_home[y][x] == 4) {
+				printf(" |");
+			}
+			else if (map_local_home[y][x] == 5) {
+				printf("| ");
+			}
+			else if (map_local_home[y][x] == 6) {
+				printf("__");
+			}
+			else if (map_local_home[y][x] == 7) {
+				printf("/ ");
+			}
+			else if (map_local_home[y][x] == 8) {
+				printf(" \\");
+			}
+			else if (map_local_home[y][x] == 9) {
+				printf(" _");
+			}
+			else if (map_local_home[y][x] == 10) {
+				printf("_ ");
+			}
 		}
 		printf("\n");
 	}
@@ -101,7 +134,10 @@ bool move_local_home(int x, int y) {
 		cursorY = 15;
 		return false;
 	}
-	else if (map_local_home[y][x] == 1) {								//壁の外には行けない
+	else if ((x == 10 || x == 11 || x == 12) && y == 23) {
+		build.rest();
+	}
+	else if (map_local_home[y][x] == 1 || map_local_home[y][x] == 3 || map_local_home[y][x] == 4 || map_local_home[y][x] == 5) {	//壁には行けない
 		return false;
 	}
 	else
