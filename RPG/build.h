@@ -16,3 +16,14 @@ namespace name_build {
 	};
 
 }
+
+
+namespace enemy_disp {
+	class ENEMY {
+	public:
+		void section(int i);
+		void monster1();
+		void monster2();
+		void monster3();
+	};
+}
