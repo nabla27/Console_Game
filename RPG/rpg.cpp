@@ -10,7 +10,7 @@
 
 enum class MODE { GAME, MODE, SAVE, LOAD }; MODE mode;
 enum class MAP { LOCAL, EAST1 }; MAP map;
-enum class BUILD_local { NON, HOME, CAVE1, TOWER }; BUILD_local build_local;
+enum class BUILD_LOCAL { NON, HOME, CAVE1, TOWER }; BUILD_LOCAL build_local;
 enum class CHARA { ENEMY1, ENEMY2, ENEMY3 }; CHARA chara;
 
 int cursorX = 30;
@@ -20,42 +20,89 @@ int cursorY = 15;
 //マップ配列を扱う時、x,y座標が逆になることに注意
 //===============================================
 
+//================================================================================================================
+//================================================================================================================
+//ローカルマップ
 
-void disp_local() {
+
+//マップ
+void disp_local_non() {
 	system("cls");
 	for (int y = 0; y < FIELD_HIGHT; y++) {
 		for (int x = 0; x < FIELD_WIDTH; x++) {
 			if (x == cursorX && y == cursorY) {
 				printf("＠");
 			}
-			else if (map_local[y][x] == 0) {
-				printf("・");
+			else if (map_local_non[y][x] == 0) {
+				printf("  ");
 			}
-			else if (map_local[y][x] == 1) {
+			else if (map_local_non[y][x] == 1) {
 				printf("Λ");
 			}
-			else if (map_local[y][x] == 2) {
+			else if (map_local_non[y][x] == 2) {
 				printf("町");
 			}
 		}
 		printf("\n");
 	}
 }
-
-bool move_local(int x, int y) {
+bool move_local_non(int x, int y) {
 	if (x<0 || x>FIELD_WIDTH - 1 || y<0 || y>FIELD_HIGHT - 1) {     //マップの外にはいけない
 		return false;
 	}
 	else if (x == 30 && y == 14) {									//homeへ入る
-		build_local = BUILD_local::HOME;
+		build_local = BUILD_LOCAL::HOME;
 		return true;
 	}
-	if (map_local[y][x] == 1) {										//山には行けない
+	if (map_local_home[y][x] == 1) {										//山には行けない
 		return false;
 	}
 	else
 		return true;
 }
+//=============================================================================================================
+//ホーム
+void disp_local_home() {
+	system("cls");
+	for (int y = 0; y < FIELD_HIGHT; y++) {
+		for (int x = 0; x < FIELD_WIDTH; x++) {
+			if (x == cursorX && y == cursorY) {
+				printf("＠");
+			}
+			else if (map_local_home[y][x] == 0) {
+				printf("  ");
+			}
+			else if (map_local_home[y][x] == 1) {
+				printf("■");
+			}
+			else if (map_local_home[y][x] == 2) {
+				printf("店");
+			}
+		}
+		printf("\n");
+	}
+}
+
+bool move_local_home(int x, int y) {
+	if (x<0 || x>FIELD_WIDTH - 1 || y<0 || y>FIELD_HIGHT - 1) {     //マップの外にはいけない
+		return false;
+	}
+	else if (x == 30 && y == 14) {									//homeへ入る
+		build_local = BUILD_LOCAL::HOME;
+		return true;
+	}
+	if (map_local_home[y][x] == 1) {								//壁の外には行けない
+		return false;
+	}
+	else
+		return true;
+}
+
+
+
+//================================================================================================================
+
+
 
 
 
@@ -66,17 +113,49 @@ int main() {
 			while (1) {
 				if (replot  + 5 < time(NULL)) {
 					replot = time(NULL);
-					disp_local();
+					if (map == MAP::LOCAL) {
+						if (build_local == BUILD_LOCAL::NON) {
+							disp_local_non();
+						}
+						else if (build_local == BUILD_LOCAL::HOME) {
+							disp_local_home();
+						}
+					}
 				}
 
 				if (_kbhit()) {
-					switch (_getch()) {
-					case 'w':if (move_local(cursorX, cursorY - 1) == true) { cursorY--; }; break;
-					case 'a':if (move_local(cursorX - 1, cursorY) == true) { cursorX--; }; break;
-					case 's':if (move_local(cursorX, cursorY + 1) == true) { cursorY++; }; break;
-					case 'd':if (move_local(cursorX + 1, cursorY) == true) { cursorX++; }; break;
+					if (map == MAP::LOCAL) {
+						if (build_local == BUILD_LOCAL::NON) {
+							switch (_getch()) {
+							case 'w':if (move_local_non(cursorX, cursorY - 1) == true) { cursorY--; }; break;
+							case 'a':if (move_local_non(cursorX - 1, cursorY) == true) { cursorX--; }; break;
+							case 's':if (move_local_non(cursorX, cursorY + 1) == true) { cursorY++; }; break;
+							case 'd':if (move_local_non(cursorX + 1, cursorY) == true) { cursorX++; }; break;
+							}
+						}
+						else if (build_local == BUILD_LOCAL::HOME) {
+							switch (_getch()) {
+							case 'w':if (move_local_home(cursorX, cursorY - 1) == true) { cursorY--; }; break;
+							case 'a':if (move_local_home(cursorX - 1, cursorY) == true) { cursorX--; }; break;
+							case 's':if (move_local_home(cursorX, cursorY + 1) == true) { cursorY++; }; break;
+							case 'd':if (move_local_home(cursorX + 1, cursorY) == true) { cursorX++; }; break;
+							}
+						}
 					}
-					disp_local();
+
+
+
+
+
+					//キー入力があったら即座に再描画
+					if (map == MAP::LOCAL) {
+						if (build_local == BUILD_LOCAL::NON) {
+							disp_local_non();
+						}
+						else if (build_local == BUILD_LOCAL::HOME) {
+							disp_local_home();
+						}
+					}
 				}
 			}
 		}
