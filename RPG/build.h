@@ -12,6 +12,7 @@ namespace name_build {
 	class BUILD {
 	public:
 		void rest();
+		void weapon();
 	};
 
 }

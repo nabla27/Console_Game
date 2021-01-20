@@ -108,16 +108,7 @@ void disp_local_home() {
 				printf("__");
 			}
 			else if (map_local_home[y][x] == 7) {
-				printf("/ ");
-			}
-			else if (map_local_home[y][x] == 8) {
-				printf(" \\");
-			}
-			else if (map_local_home[y][x] == 9) {
-				printf(" _");
-			}
-			else if (map_local_home[y][x] == 10) {
-				printf("_ ");
+				printf("Éµ");
 			}
 		}
 		printf("\n");
@@ -136,6 +127,9 @@ bool move_local_home(int x, int y) {
 	}
 	else if ((x == 10 || x == 11 || x == 12) && y == 23) {
 		build.rest();
+	}
+	else if ((x == 6 || x == 7 || x == 8) && y == 10) {
+		build.weapon();
 	}
 	else if (map_local_home[y][x] == 1 || map_local_home[y][x] == 3 || map_local_home[y][x] == 4 || map_local_home[y][x] == 5) {	//ï«Ç…ÇÕçsÇØÇ»Ç¢
 		return false;
