@@ -172,11 +172,11 @@ bool move_local_home(int x, int y) {
 //É^ÉèÅ[
 void disp_local_tower() {
 	int progress = count / 35;
-	if (progress % 2 == 0) {
-		wall_hide = false;					//ï«ÇÃï`é 
+	if (progress % 2 == 0 && map_local_tower[cursorY][cursorX] != 2) {
+		wall_hide = false;					
 	}
-	else if (progress % 2 == 1) {
-		wall_hide = true;					//ï«Çè¡Ç∑
+	else if (progress % 2 == 1 && map_local_tower[cursorY][cursorX] != 3) {
+		wall_hide = true;					
 	}
 	system("cls");
 	for (int y = 0; y < FIELD_HIGHT; y++) {
@@ -199,7 +199,12 @@ void disp_local_tower() {
 				}
 			}
 			else if (map_local_tower[y][x] == 3) {
-				printf(" |");
+				if (wall_hide == false) {
+					printf("  ");
+				}
+				else if (wall_hide == true) {
+					printf("Å°");
+				}
 			}
 			else if (map_local_tower[y][x] == 4) {
 				printf("| ");
@@ -213,8 +218,6 @@ void disp_local_tower() {
 		}
 		printf("\n");
 	}
-	printf("%d\n", count);
-	printf("%d\n", progress);
 }
 
 bool move_local_tower(int x, int y) {
@@ -222,6 +225,9 @@ bool move_local_tower(int x, int y) {
 		return false;
 	}
 	else if (map_local_tower[y][x] == 2 && wall_hide == false) {
+		return false;
+	}
+	else if (map_local_tower[y][x] == 3 && wall_hide == true) {
 		return false;
 	}
 	else
