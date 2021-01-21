@@ -26,5 +26,6 @@ namespace enemy_disp {
 		void monster1(); //local_non
 		void monster2(); //local_non
 		void monster3(); //local_non
+		void boss1();	 //local_tower
 	};
 }

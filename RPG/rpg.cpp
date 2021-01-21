@@ -206,8 +206,8 @@ void disp_local_tower() {
 					printf("Å°");
 				}
 			}
-			else if (map_local_tower[y][x] == 4) {
-				printf("| ");
+			else if (map_local_tower[y][x] == 4 && wall_hide == true) {
+				printf("Éƒ");
 			}
 			else if (map_local_tower[y][x] == 5) {
 				printf("__");
@@ -229,6 +229,15 @@ bool move_local_tower(int x, int y) {
 	}
 	else if (map_local_tower[y][x] == 3 && wall_hide == true) {
 		return false;
+	}
+	else if ((x == 0 && y == 27) || (x == 0 && y == 28) || (x == 1 && y == 28)) {
+		count = 0;
+		cursorX = 5;
+		cursorY = 26;
+		build_local = BUILD_LOCAL::NON;
+	}
+	else if (x == 39 && y == 10 && wall_hide == true) {
+		enemy.section(3);
 	}
 	else
 		return true;

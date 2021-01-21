@@ -56,6 +56,10 @@ void ENEMY::monster3() {
 	printf("monster3\n");
 }
 
+void ENEMY::boss1() {
+	printf("boss1\n");
+}
+
 
 
 
@@ -77,6 +81,9 @@ void ENEMY::section(int i) {
 		}
 		else if (i == 2) {
 			monster3();
+		}
+		else if (i == 3) {
+			boss1();
 		}
 
 		battle_disp();
