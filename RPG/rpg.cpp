@@ -26,6 +26,7 @@ int cursorX = 30;
 int cursorY = 15;
 
 int count = 0;
+bool wall_hide = false;
 
 
 /*新しい建物を追加時に行う変更点
@@ -96,6 +97,7 @@ bool move_local_non(int x, int y) {
 		build_local = BUILD_LOCAL::TOWER;
 		cursorX = 1;
 		cursorY = 27;
+		count = 0;
 		return false;
 	}
 	else if (map_local_non[y][x] == 1 || map_local_non[y][x] == 3 || map_local_non[y][x] == 4 || map_local_non[y][x] == 5) {		//山、壁1、壁2には行けない
@@ -150,6 +152,7 @@ bool move_local_home(int x, int y) {
 		build_local = BUILD_LOCAL::NON;
 		cursorX = 30;
 		cursorY = 15;
+		count = 0;
 		return false;
 	}
 	else if ((x == 10 || x == 11 || x == 12) && y == 23) {
@@ -168,6 +171,13 @@ bool move_local_home(int x, int y) {
 //==============================================================================================================
 //タワー
 void disp_local_tower() {
+	int progress = count / 35;
+	if (progress % 2 == 0) {
+		wall_hide = false;					//壁の描写
+	}
+	else if (progress % 2 == 1) {
+		wall_hide = true;					//壁を消す
+	}
 	system("cls");
 	for (int y = 0; y < FIELD_HIGHT; y++) {
 		for (int x = 0; x < FIELD_WIDTH; x++) {
@@ -181,7 +191,12 @@ void disp_local_tower() {
 				printf("■");
 			}
 			else if (map_local_tower[y][x] == 2) {
-				printf("町");
+				if (wall_hide == false) {
+					printf("■");
+				}
+				else if (wall_hide == true) {
+					printf("  ");
+				}
 			}
 			else if (map_local_tower[y][x] == 3) {
 				printf(" |");
@@ -198,12 +213,19 @@ void disp_local_tower() {
 		}
 		printf("\n");
 	}
+	printf("%d\n", count);
+	printf("%d\n", progress);
 }
 
 bool move_local_tower(int x, int y) {
-	if (map_local_tower[y][x] != 1) {
-		return true;
+	if (map_local_tower[y][x] == 1) {
+		return false;
 	}
+	else if (map_local_tower[y][x] == 2 && wall_hide == false) {
+		return false;
+	}
+	else
+		return true;
 }
 
 
@@ -282,10 +304,6 @@ int main() {
 						count = 0;
 						battle_count = 10 + rand() % 20;
 						enemy.section(rand() % 3);
-					}
-					else if (count > battle_count && build_local != BUILD_LOCAL::NON) {
-						count = 0;
-						battle_count = 10 + rand() % 20;
 					}
 
 				}
