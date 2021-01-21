@@ -23,8 +23,8 @@ namespace enemy_disp {
 	public:
 		void section(int i);
 		void battle_disp();
-		void monster1();
-		void monster2();
-		void monster3();
+		void monster1(); //local_non
+		void monster2(); //local_non
+		void monster3(); //local_non
 	};
 }
